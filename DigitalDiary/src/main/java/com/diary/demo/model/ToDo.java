@@ -23,13 +23,14 @@ public class ToDo {
 	private List<ToDoItems> items;
 	 
 	   public ToDo() {
+		   this.createdDate = Instant.now();
 	   }
 
-	   public ToDo( String description, Instant createdDate, boolean completed) {
+	   public ToDo( String description, boolean status) {
 	       
 	       this.description = description;
 	       this.createdDate = Instant.now();
-	       this.completed = completed;
+	       this.completed = status;
 	   }
 	   public Long getTodo_Id() {
 		return Id;

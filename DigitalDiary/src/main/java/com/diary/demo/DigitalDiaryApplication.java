@@ -5,9 +5,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 import com.diary.demo.controller.ToDoController;
+import com.diary.demo.service.UserToDoService;
 
 @SpringBootApplication
-@ComponentScan(basePackageClasses = ToDoController.class)
+@ComponentScan(basePackageClasses = {ToDoController.class,UserToDoService.class})
 public class DigitalDiaryApplication {
 
 	public static void main(String[] args) {
