@@ -20,7 +20,7 @@ public class ToDoItems {
 	   @GeneratedValue(strategy = GenerationType.AUTO)
 	   @Column
 	   private Long item_Id;
-	   private String items;
+	   private String item;
 		@ManyToOne
 		@JoinColumn(name = "todoId")
 	   private ToDo toDo;
@@ -31,11 +31,11 @@ public class ToDoItems {
 	public void setItem_Id(Long item_Id) {
 		this.item_Id = item_Id;
 	}
-	public String getItems() {
-		return items;
+	public String getItem() {
+		return item;
 	}
-	public void setItems(String items) {
-		this.items = items;
+	public void setItems(String item) {
+		this.item = item;
 	}
 	public ToDo getToDo()
 	{
@@ -48,6 +48,6 @@ public class ToDoItems {
 	
 	@Override
 	public String toString() {
-		return "ToDoItems [item_Id=" + item_Id + ", items=" + items + "]";
+		return "ToDoItems [item_Id=" + item_Id + ", items=" + item + "]";
 	}
 }
