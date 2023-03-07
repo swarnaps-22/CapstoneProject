@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 
 import com.diary.demo.model.User;
 @Repository
-public interface UsersRepository  extends JpaRepository<User,Long>{
-
+public interface UserRepository  extends JpaRepository<User,Long>{
+	User findByEmail(String email);
 }

@@ -19,18 +19,20 @@ public class UserToDoService {
 		 todoRepository.findAll().forEach(toDoList::add);
 		 return toDoList;
 }
-	 public Long findByDescription(String name) 
+	 public Long findIdByDescription(String name) 
 	 {
 		 Long toDoId = 0L;
 		 List<ToDo> toDoList = getAllToDo();
 		for(ToDo item : toDoList)
 		{
-			if(item.getDescription()== name)
+			if(item.getDescription().equals(name))
 			{
 				 toDoId = item.getTodo_Id();
+				
 			}
+			
 		}
-		return toDoId;
+		 return toDoId;
 	 }
 	 public void createToDo(ToDo toDoCreated)
 	 {

@@ -24,30 +24,39 @@ public class ToDoItems {
 		@ManyToOne
 		@JoinColumn(name = "todoId")
 	   private ToDo toDo;
+		public ToDoItems(String item, ToDo toDo)
+		{
+			this.item = item;
+			this.toDo = toDo;
+		}
+		public ToDoItems()
+		{
+			
+		}
 		
-	public Long getItem_Id() {
-		return item_Id;
-	}
-	public void setItem_Id(Long item_Id) {
-		this.item_Id = item_Id;
-	}
-	public String getItem() {
-		return item;
-	}
-	public void setItems(String item) {
-		this.item = item;
-	}
-	public ToDo getToDo()
-	{
-		return toDo;
-	}
-	public void setToDo(ToDo td)
-	{
-		this.toDo = td ;
-	}
-	
-	@Override
-	public String toString() {
-		return "ToDoItems [item_Id=" + item_Id + ", items=" + item + "]";
-	}
+		public Long getItem_Id() {
+			return item_Id;
+		}
+		public void setItem_Id(Long item_Id) {
+			this.item_Id = item_Id;
+		}
+		public String getItem() {
+			return item;
+		}
+		public void setItem(String inputItem) {
+			this.item = inputItem;
+		}
+		public ToDo getToDo()
+		{
+			return toDo;
+		}
+		public void setToDo(ToDo td)
+		{
+			this.toDo = td ;
+		}
+		
+		@Override
+		public String toString() {
+			return "ToDoItems [item_Id=" + item_Id + ", item=" + item + "]";
+		}
 }

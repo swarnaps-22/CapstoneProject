@@ -10,10 +10,12 @@ import org.springframework.stereotype.Service;
 import com.diary.demo.model.ToDo;
 import com.diary.demo.model.ToDoItems;
 import com.diary.demo.repositories.ToDoItemsRepository;
+import com.diary.demo.repositories.ToDoRepository;
 
 @Service
 public class ToDoItemService {
-	
+	@Autowired
+	private ToDoRepository toDoRepository;
 	@Autowired
 	private  ToDoItemsRepository itemsRepository;
 
@@ -30,14 +32,26 @@ public class ToDoItemService {
 		allItemsList = getAllToDoItems();
 		for(ToDoItems item : allItemsList)
 		{
-			if(item.getToDo().getTodo_Id()== toDoId)
+			if(item.getToDo()!=null && item.getToDo().getTodo_Id()== toDoId)
 			{
 				itemsList.add(item.getItem());
 			}
 		}
-		itemsList.add("test");
+//		itemsList.add("test");
 		return itemsList;
 		 
 		
 	}
+	 public void saveItem( ToDoItems toDoItems,Long toDoId) throws Exception
+	 {
+		
+		System.out.println("todoId in SaveItem:"+toDoId);
+		Optional<ToDo> toDoOption= toDoRepository.findById(toDoId);
+		if(!toDoOption.isPresent()) throw new Exception("ToDo not found");
+		ToDo toDo = toDoOption.get();
+		toDoItems.setToDo(toDo);
+		 itemsRepository.save(toDoItems);
+	 }
+	 
+	 
 }
