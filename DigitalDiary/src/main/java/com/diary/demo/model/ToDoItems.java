@@ -12,6 +12,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name ="ToDoItems")
@@ -20,6 +21,7 @@ public class ToDoItems {
 	   @GeneratedValue(strategy = GenerationType.AUTO)
 	   @Column
 	   private Long item_Id;
+	   @NotBlank(message = "Name may not be blank")
 	   private String item;
 		@ManyToOne
 		@JoinColumn(name = "todoId")

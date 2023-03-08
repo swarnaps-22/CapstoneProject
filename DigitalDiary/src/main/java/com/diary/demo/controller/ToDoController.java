@@ -85,7 +85,7 @@ public class ToDoController {
 		return "todoitemsview";
 	 }
 	@PostMapping(value ="/additems")
-	public String createToDo(Model model,ToDoItems toDoItem)
+	public String createToDoItem(Model model,ToDoItems toDoItem)
 	{
 		Long toDoId = (Long) model.getAttribute("sessionTodoId");
 		System.out.println("toDoId "+ toDoId);
@@ -105,5 +105,20 @@ public class ToDoController {
 		model.addAttribute("todoitems", itemsList);
 		return "todoitemsview";
 	}
-	
+	@GetMapping("/deleteItem/{item}")
+	public String deleteToDoItem(@PathVariable String item,Model model)
+	{
+		System.out.println("delete item is "+ item);
+		
+		itemsService.deleteItem(item);
+		
+		model.addAttribute("toDoItem", new ToDoItems());
+		
+		Long toDoId = (Long) model.getAttribute("sessionTodoId");
+		System.out.println("toDoId "+ toDoId);
+		List<String> itemsList = itemsService.getItemList(toDoId);
+		
+		model.addAttribute("todoitems", itemsList);
+		return "todoitemsview";
+	}
 }

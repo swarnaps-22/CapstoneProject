@@ -37,19 +37,22 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
 							<input type="text" id="myInput" placeholder="Enter Items" th:field="*{item}">
 							<button type = "submit" class="btn btn-primary rounded-0 btn-block">Add Items</button>  
 						</div>
-					</form>
+						</form>
                         <table class="table">
                             <thead>
                                 <tr>
 
-                                   <th scope="col" ></th>
-                                   
+                                   <th scope="col" >ItemsList</th>
+                                   <th scope="col" >Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                            <tr th:each="item : ${todoitems}">
 									<td><span  th:text="${item}"></span></td>
-								
+									<td>
+										<a th:href ="@{/updateItem/{itemId} (itemId=${item})}" class = "btn btn-primary">Update</a>
+										<a th:href ="@{/deleteItem/{itemId} (itemId=${item})}" class = "btn btn-danger">Delete</a>
+										</td>
 								</tr>
                              
                             </tbody>

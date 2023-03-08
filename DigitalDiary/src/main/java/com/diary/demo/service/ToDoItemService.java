@@ -28,8 +28,8 @@ public class ToDoItemService {
 	public List<String> getItemList(Long toDoId) {
 		// TODO Auto-generated method stub
 		List<String> itemsList= new ArrayList<String>();
-		List<ToDoItems> allItemsList = new ArrayList<ToDoItems>();
-		allItemsList = getAllToDoItems();
+		//List<ToDoItems> allItemsList = new ArrayList<ToDoItems>();
+		List<ToDoItems> allItemsList = getAllToDoItems();
 		for(ToDoItems item : allItemsList)
 		{
 			if(item.getToDo()!=null && item.getToDo().getTodo_Id()== toDoId)
@@ -50,8 +50,26 @@ public class ToDoItemService {
 		if(!toDoOption.isPresent()) throw new Exception("ToDo not found");
 		ToDo toDo = toDoOption.get();
 		toDoItems.setToDo(toDo);
-		 itemsRepository.save(toDoItems);
+		itemsRepository.save(toDoItems);
 	 }
-	 
+	 public void deleteItem(String itemname)
+	 {
+		Long todoItemId = 0L;
+		List<ToDoItems> allItemsList = getAllToDoItems();
+		for(ToDoItems todoItem : allItemsList)
+		{
+			if(todoItem.getToDo()!=null && todoItem.getItem().equals(itemname))
+			{
+				todoItemId = todoItem.getItem_Id();
+				break;
+			}
+		}
+		itemsRepository.deleteById(todoItemId);
+	 }
+	
+//	public Long getItemIdWithName(String name)
+//	 {
+//		 itemsRepository.
+//	 }
 	 
 }

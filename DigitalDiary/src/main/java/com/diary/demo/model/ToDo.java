@@ -1,5 +1,6 @@
 package com.diary.demo.model;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 import java.time.Instant;
 import java.util.Collection;
@@ -13,6 +14,7 @@ public class ToDo {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "Id")
 	   private Long Id;
+	@NotBlank(message = "Name may not be blank")
 	@Column(name = "description")
 	   private String description;
 	@Column(name = "createdDate")
