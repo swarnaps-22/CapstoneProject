@@ -11,7 +11,7 @@ import java.util.List;
 public class ToDo {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name = "Id")
 	   private Long Id;
 	@NotBlank(message = "Name may not be blank")
@@ -21,8 +21,11 @@ public class ToDo {
 	   private Instant createdDate;
 	@Column(name = "completed")
 	   private boolean completed;
-	@OneToMany(mappedBy ="toDo") 
+	@OneToMany(orphanRemoval = true, cascade = CascadeType.PERSIST,mappedBy ="toDo") 
 		private List<ToDoItems> items;
+	@ManyToOne
+	 
+	private User users;
 		 
 		public List<ToDoItems> getItems() 
 		{
@@ -85,12 +88,21 @@ public class ToDo {
 			this.completed = completed;
 		}
 	
-		
+		public User getUsers() {
+			// TODO Auto-generated method stub
+			return users;
+		}
+//		public void setUsers( User currentUser) {
+//			// TODO Auto-generated method stub
+//			this.users =  User currentUser;
+//		}
 	
 		   @Override 
 		   public String toString()
 		   {
 			   return String.format("ToDo{todo_Id ='%d',description ='%s',createdDate ='%s'}",Id,description,createdDate);
 		   }
+
+		
 	   
 }

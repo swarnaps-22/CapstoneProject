@@ -14,12 +14,10 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
 <div class="container text-center text-white">
     <div class="row pt-5">
         <div class="col-lg-8 mx-auto">
-            <h1 class="display-4">MyDiary </h1>
+            <h1 class="display-4" >MyDiary </h1>
      
-     	  <div class="btn btn-primary rounded-0 btn-block" id="insertRow" >ToDo List
-			  
-		   </div>
-		          
+     	  <div class="btn btn-primary rounded-0 btn-block" id="insertRow" >ToDo List</div>
+		     <span><a th:href ="@{/mainform}"><button class="btn btn-primary rounded-0 btn-block">Home</button></a></span>     
         </div>
     </div>
 </div>
@@ -47,11 +45,19 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
                                 </tr>
                             </thead>
                             <tbody>
-                           <tr th:each="item : ${todoitems}">
-									<td><span  th:text="${item}"></span></td>
+                           <tr th:each="itemName : ${todoitems}">
+									<td><span  th:text="${itemName}"></span></td>
 									<td>
-										<a th:href ="@{/updateItem/{itemId} (itemId=${item})}" class = "btn btn-primary">Update</a>
-										<a th:href ="@{/deleteItem/{itemId} (itemId=${item})}" class = "btn btn-danger">Delete</a>
+										
+										<a th:href ="@{/deleteItem/{itemId} (itemId=${itemName})}" class = "btn btn-danger">Delete</a>
+										
+										
+										<form action ="#" method ="POST" th:object="${toDoItem}" th:action="@{/updateItem/{itemId}(itemId=${itemName})}"> 
+											<input type="text" id="myInput" placeholder="Enter Item to update" th:field="*{item}" />
+												<button type ="submit" class = "btn btn-primary">Update</button>
+												
+											</form>
+										
 										</td>
 								</tr>
                              

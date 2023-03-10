@@ -6,12 +6,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -45,22 +48,33 @@ public class ToDoController {
 		return "main";
 	 }
 	 
+//	@GetMapping(value ="/createTodo1")
+//	public String createMainToDo( Model model,ToDo toDo)
+//	{
+//		System.out.println("Invoked createTodo");
+//		
+//		model.addAttribute("toDo", new ToDo());
+//		return "createtodo";
+//	}
+	 
 	@PostMapping(value ="/create")
-	public String createToDo( ToDo toDo)
+	public String createToDo( Model model, ToDo toDo)
 	{
+		System.out.println("Invoked createTodo");
 		System.out.println(toDo.toString());
 		usertodoService.createToDo(toDo);
-		return "createtodo";
+		List<ToDo> toDoInfo = usertodoService.getAllToDo();
+		System.out.println(toDoInfo);
+		model.addAttribute("toDoList", toDoInfo);
+		System.out.println("this is main");
+		return "main";
 	}
 	@GetMapping("/addtodo")
 	public String toDopage(Model model)
 	{
-			model.addAttribute("toDo", new ToDo());
-	//		ModelAndView mav = new ModelAndView("main");
-	//		mav.addObject("todo",usertodoService.getAllToDo());
-	
-			System.out.println("Creating toDo List");
-			return "createtodo";
+		model.addAttribute("toDo", new ToDo());
+		System.out.println("Creating toDo List");
+		return "createtodo";
 	}
 
 	@GetMapping("/item/{category}")
@@ -121,4 +135,33 @@ public class ToDoController {
 		model.addAttribute("todoitems", itemsList);
 		return "todoitemsview";
 	}
+//	Updating Itemslist
+	@PostMapping("/updateItem/{ItemNameToUpdate}")
+		public String updateItem(@PathVariable String ItemNameToUpdate,Model model, ToDoItems toDoItem, BindingResult bindingResult)
+		{
+		
+		System.out.println("Item name to update=====>   "+ItemNameToUpdate);
+			
+			System.out.println(toDoItem);
+			Long toDoId = (Long) model.getAttribute("sessionTodoId");
+			try
+			{
+				itemsService.updateItem(ItemNameToUpdate,toDoItem,toDoId);
+			}
+			catch(Exception e)
+			{
+				System.out.println("Exception in update");
+			}
+			
+			model.addAttribute("toDoItem", new ToDoItems());
+			
+			
+			
+			System.out.println("toDoId "+ toDoId);
+			List<String> itemsList = itemsService.getItemList(toDoId);
+			
+			model.addAttribute("todoitems", itemsList);
+			return "todoitemsview";
+		}
+	
 }

@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 
@@ -18,7 +19,7 @@ import jakarta.validation.constraints.NotBlank;
 @Table(name ="ToDoItems")
 public class ToDoItems {
 	   @Id
-	   @GeneratedValue(strategy = GenerationType.AUTO)
+	   @GeneratedValue(strategy = GenerationType.SEQUENCE)
 	   @Column
 	   private Long item_Id;
 	   @NotBlank(message = "Name may not be blank")
@@ -26,6 +27,7 @@ public class ToDoItems {
 		@ManyToOne
 		@JoinColumn(name = "todoId")
 	   private ToDo toDo;
+		
 		public ToDoItems(String item, ToDo toDo)
 		{
 			this.item = item;
@@ -35,7 +37,11 @@ public class ToDoItems {
 		{
 			
 		}
-		
+//		public ToDoItems(String itemName,Long itemId)
+//		{
+//			this.item =itemName;
+//			this.item_Id = itemId;
+//		}
 		public Long getItem_Id() {
 			return item_Id;
 		}

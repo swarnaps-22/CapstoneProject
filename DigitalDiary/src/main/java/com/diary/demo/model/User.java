@@ -5,7 +5,8 @@ package com.diary.demo.model;
 import jakarta.persistence.*;
 import java.util.Collection;
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = "email"))
+@Table(name = "users" ,uniqueConstraints = @UniqueConstraint(columnNames = "email"))
+
 public class User {
 
    @Id

@@ -3,7 +3,10 @@ package com.diary.demo.service;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import com.diary.demo.model.ToDo;
@@ -36,6 +39,8 @@ public class UserToDoService {
 	 }
 	 public void createToDo(ToDo toDoCreated)
 	 {
+		 
+//		 toDoCreated.setUsers(currentUser);
 		
 		 todoRepository.save(toDoCreated);
 	 }

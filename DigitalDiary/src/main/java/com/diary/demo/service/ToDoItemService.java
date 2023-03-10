@@ -67,9 +67,23 @@ public class ToDoItemService {
 		itemsRepository.deleteById(todoItemId);
 	 }
 	
-//	public Long getItemIdWithName(String name)
-//	 {
-//		 itemsRepository.
-//	 }
+	public void updateItem(String itemToUpdate ,ToDoItems toDoItem,Long toDoId) throws Exception
+	 {
+		Long todoItemId = 0L;
+		List<ToDoItems> allItemsList = getAllToDoItems();
+		for(ToDoItems todoItem : allItemsList)
+		{
+			if(todoItem.getToDo()!=null && todoItem.getItem().equals(itemToUpdate))
+			{
+				todoItemId = todoItem.getItem_Id();
+				break;
+			}
+		}
+		toDoItem.setItem_Id(todoItemId);
+		saveItem(toDoItem,toDoId);
+		
+		
+	 }
+	
 	 
 }
