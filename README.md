@@ -1,5 +1,5 @@
 
-#E-Diary Webapplication
+#Digital Diary Webapplication
 
 E-Diary is a web application designed to keep track of tasks.
 As a E-Diary user, user will have option to add todo's and each todo is a category where user can add items in specified todo.
