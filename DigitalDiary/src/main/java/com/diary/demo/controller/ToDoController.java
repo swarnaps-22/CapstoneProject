@@ -48,6 +48,7 @@ public class ToDoController {
 		return "main";
 	 }
 	 
+	 
 //	@GetMapping(value ="/createTodo1")
 //	public String createMainToDo( Model model,ToDo toDo)
 //	{
@@ -62,9 +63,12 @@ public class ToDoController {
 	{
 		System.out.println("Invoked createTodo");
 		System.out.println(toDo.toString());
+//		Saves the ToDo item in the repository
 		usertodoService.createToDo(toDo);
+//		Get all the ToDO's from ToDo repository 
 		List<ToDo> toDoInfo = usertodoService.getAllToDo();
 		System.out.println(toDoInfo);
+//		
 		model.addAttribute("toDoList", toDoInfo);
 		System.out.println("this is main");
 		return "main";
@@ -72,6 +76,7 @@ public class ToDoController {
 	@GetMapping("/addtodo")
 	public String toDopage(Model model)
 	{
+//		gets the create todo page to create a TODO
 		model.addAttribute("toDo", new ToDo());
 		System.out.println("Creating toDo List");
 		return "createtodo";
@@ -81,7 +86,7 @@ public class ToDoController {
 
 	public String toDoItems(@PathVariable String category,Model model)
 	 {
-		
+//		Get the todoitems view page to perform CRUD on the TODO items in the TODO
 		 model.addAttribute("toDoItem", new ToDoItems());
 		 System.out.println("this is todo category "+ category);
 //		 List<ToDo> toDoInfo = new ArrayList<ToDo>();

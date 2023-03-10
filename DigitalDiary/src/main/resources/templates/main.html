@@ -19,12 +19,12 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
 	
 </head>
 <body>
-		
+	
 <div class="container text-center text-white">
 
     <div class="row pt-5">
         <div class="col-lg-8 mx-auto">
-			<span class="table-responsive"><button>Logout</button></span>
+			<span><a th:href="@{/logout}"class="btn btn-primary rounded-0 btn-block" style = float:right >Logout</a></span>
             <h1 class="display-4"> MyDiary </h1>
      					
      	  <div class="btn btn-primary rounded-0 btn-block" id="insertRow" >ToDo List</div>
@@ -32,11 +32,6 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
         </div>
     </div>
 </div>
-
-
-
-
-
 
 <div class="container py-5">
     <div class="row">
