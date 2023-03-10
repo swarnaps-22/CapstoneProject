@@ -18,10 +18,13 @@ Performing CRUD on ToDoItems
 
 ## Documentation
 
-It has ToDo Controller ,main controller ,ToDoItem Service and UserToDoService 
+Application has following controllers
+ToDo Controller: ToDo controller has rest api's for the TODO feature
+main controller: Main Controller has rest api's fro login module and user page
 
-ToDo controller has rest api's for the TODO feature
-Main Controller has rest api's fro login module and user page
+and services:
+ToDoItem Service and UserToDoService 
+
 
 Implemented two services for reading data, saving data ,deleting and updating data
 
