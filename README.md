@@ -7,7 +7,7 @@ User can view the todo list as he logsin  and also add delete and update item in
 Database Specification : Its Mysql database and has ToDo table, To_Do_Items ,User, role,Users_roles,Tables
 Below is the ER diagram for the tables
 ClassDiagram
-![image](https://user-images.githubusercontent.com/118768069/224366860-d894acb5-918d-481a-ba38-d1083497f74c.
+
 
 
 Features:
